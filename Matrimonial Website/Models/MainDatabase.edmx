@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="chat">
+          <Key>
+            <PropertyRef Name="c_id" />
+          </Key>
+          <Property Name="c_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="c_user_1" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="c_user_2" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="chat_status" Type="int" />
+        </EntityType>
+        <EntityType Name="image_gallery">
+          <Key>
+            <PropertyRef Name="img_id" />
+          </Key>
+          <Property Name="img_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="u_id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="user_image" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="successful_stories">
+          <Key>
+            <PropertyRef Name="s_id" />
+          </Key>
+          <Property Name="s_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="u_id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="rating" Type="varchar" MaxLength="255" />
+          <Property Name="story_status" Type="int" />
+          <Property Name="title" Type="varchar" MaxLength="255" />
+          <Property Name="description_" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="user_profile">
+          <Key>
+            <PropertyRef Name="u_id" />
+          </Key>
+          <Property Name="u_id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="pass" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="F_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="L_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="occupation" Type="varchar" MaxLength="255" />
+          <Property Name="caste" Type="varchar" MaxLength="255" />
+          <Property Name="religion" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="salary" Type="int" />
+          <Property Name="gender" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK__chat__c_user_1__20C1E124">
+          <End Role="user_profile" Type="Self.user_profile" Multiplicity="1" />
+          <End Role="chat" Type="Self.chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_profile">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="chat">
+              <PropertyRef Name="c_user_1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__chat__c_user_2__21B6055D">
+          <End Role="user_profile" Type="Self.user_profile" Multiplicity="1" />
+          <End Role="chat" Type="Self.chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_profile">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="chat">
+              <PropertyRef Name="c_user_2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__image_gall__u_id__24927208">
+          <End Role="user_profile" Type="Self.user_profile" Multiplicity="1" />
+          <End Role="image_gallery" Type="Self.image_gallery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_profile">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="image_gallery">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__successful__u_id__1DE57479">
+          <End Role="user_profile" Type="Self.user_profile" Multiplicity="1" />
+          <End Role="successful_stories" Type="Self.successful_stories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_profile">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="successful_stories">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="chat" EntityType="Self.chat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="image_gallery" EntityType="Self.image_gallery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="successful_stories" EntityType="Self.successful_stories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user_profile" EntityType="Self.user_profile" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__chat__c_user_1__20C1E124" Association="Self.FK__chat__c_user_1__20C1E124">
+            <End Role="user_profile" EntitySet="user_profile" />
+            <End Role="chat" EntitySet="chat" />
+          </AssociationSet>
+          <AssociationSet Name="FK__chat__c_user_2__21B6055D" Association="Self.FK__chat__c_user_2__21B6055D">
+            <End Role="user_profile" EntitySet="user_profile" />
+            <End Role="chat" EntitySet="chat" />
+          </AssociationSet>
+          <AssociationSet Name="FK__image_gall__u_id__24927208" Association="Self.FK__image_gall__u_id__24927208">
+            <End Role="user_profile" EntitySet="user_profile" />
+            <End Role="image_gallery" EntitySet="image_gallery" />
+          </AssociationSet>
+          <AssociationSet Name="FK__successful__u_id__1DE57479" Association="Self.FK__successful__u_id__1DE57479">
+            <End Role="user_profile" EntitySet="user_profile" />
+            <End Role="successful_stories" EntitySet="successful_stories" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="chat">
+          <Key>
+            <PropertyRef Name="c_id" />
+          </Key>
+          <Property Name="c_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="c_user_1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="c_user_2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="chat_status" Type="Int32" />
+          <NavigationProperty Name="user_profile" Relationship="Self.FK__chat__c_user_1__20C1E124" FromRole="chat" ToRole="user_profile" />
+          <NavigationProperty Name="user_profile1" Relationship="Self.FK__chat__c_user_2__21B6055D" FromRole="chat" ToRole="user_profile" />
+        </EntityType>
+        <EntityType Name="image_gallery">
+          <Key>
+            <PropertyRef Name="img_id" />
+          </Key>
+          <Property Name="img_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="user_profile" Relationship="Self.FK__image_gall__u_id__24927208" FromRole="image_gallery" ToRole="user_profile" />
+        </EntityType>
+        <EntityType Name="successful_stories">
+          <Key>
+            <PropertyRef Name="s_id" />
+          </Key>
+          <Property Name="s_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rating" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="story_status" Type="Int32" />
+          <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="description_" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="user_profile" Relationship="Self.FK__successful__u_id__1DE57479" FromRole="successful_stories" ToRole="user_profile" />
+        </EntityType>
+        <EntityType Name="user_profile">
+          <Key>
+            <PropertyRef Name="u_id" />
+          </Key>
+          <Property Name="u_id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="F_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="L_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="occupation" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="caste" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="religion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="salary" Type="Int32" />
+          <Property Name="gender" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="chats" Relationship="Self.FK__chat__c_user_1__20C1E124" FromRole="user_profile" ToRole="chat" />
+          <NavigationProperty Name="chats1" Relationship="Self.FK__chat__c_user_2__21B6055D" FromRole="user_profile" ToRole="chat" />
+          <NavigationProperty Name="image_gallery" Relationship="Self.FK__image_gall__u_id__24927208" FromRole="user_profile" ToRole="image_gallery" />
+          <NavigationProperty Name="successful_stories" Relationship="Self.FK__successful__u_id__1DE57479" FromRole="user_profile" ToRole="successful_stories" />
+        </EntityType>
+        <Association Name="FK__chat__c_user_1__20C1E124">
+          <End Role="user_profile" Type="Self.user_profile" Multiplicity="1" />
+          <End Role="chat" Type="Self.chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_profile">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="chat">
+              <PropertyRef Name="c_user_1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__chat__c_user_2__21B6055D">
+          <End Role="user_profile" Type="Self.user_profile" Multiplicity="1" />
+          <End Role="chat" Type="Self.chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_profile">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="chat">
+              <PropertyRef Name="c_user_2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__image_gall__u_id__24927208">
+          <End Role="user_profile" Type="Self.user_profile" Multiplicity="1" />
+          <End Role="image_gallery" Type="Self.image_gallery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_profile">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="image_gallery">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__successful__u_id__1DE57479">
+          <End Role="user_profile" Type="Self.user_profile" Multiplicity="1" />
+          <End Role="successful_stories" Type="Self.successful_stories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_profile">
+              <PropertyRef Name="u_id" />
+            </Principal>
+            <Dependent Role="successful_stories">
+              <PropertyRef Name="u_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Matrimonial_WebsiteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="chats" EntityType="Self.chat" />
+          <EntitySet Name="image_gallery" EntityType="Self.image_gallery" />
+          <EntitySet Name="successful_stories" EntityType="Self.successful_stories" />
+          <EntitySet Name="user_profile" EntityType="Self.user_profile" />
+          <AssociationSet Name="FK__chat__c_user_1__20C1E124" Association="Self.FK__chat__c_user_1__20C1E124">
+            <End Role="user_profile" EntitySet="user_profile" />
+            <End Role="chat" EntitySet="chats" />
+          </AssociationSet>
+          <AssociationSet Name="FK__chat__c_user_2__21B6055D" Association="Self.FK__chat__c_user_2__21B6055D">
+            <End Role="user_profile" EntitySet="user_profile" />
+            <End Role="chat" EntitySet="chats" />
+          </AssociationSet>
+          <AssociationSet Name="FK__image_gall__u_id__24927208" Association="Self.FK__image_gall__u_id__24927208">
+            <End Role="user_profile" EntitySet="user_profile" />
+            <End Role="image_gallery" EntitySet="image_gallery" />
+          </AssociationSet>
+          <AssociationSet Name="FK__successful__u_id__1DE57479" Association="Self.FK__successful__u_id__1DE57479">
+            <End Role="user_profile" EntitySet="user_profile" />
+            <End Role="successful_stories" EntitySet="successful_stories" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Matrimonial_WebsiteEntities">
+          <EntitySetMapping Name="chats">
+            <EntityTypeMapping TypeName="Model.chat">
+              <MappingFragment StoreEntitySet="chat">
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+                <ScalarProperty Name="c_user_1" ColumnName="c_user_1" />
+                <ScalarProperty Name="c_user_2" ColumnName="c_user_2" />
+                <ScalarProperty Name="chat_status" ColumnName="chat_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="image_gallery">
+            <EntityTypeMapping TypeName="Model.image_gallery">
+              <MappingFragment StoreEntitySet="image_gallery">
+                <ScalarProperty Name="img_id" ColumnName="img_id" />
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="user_image" ColumnName="user_image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="successful_stories">
+            <EntityTypeMapping TypeName="Model.successful_stories">
+              <MappingFragment StoreEntitySet="successful_stories">
+                <ScalarProperty Name="s_id" ColumnName="s_id" />
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="story_status" ColumnName="story_status" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description_" ColumnName="description_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_profile">
+            <EntityTypeMapping TypeName="Model.user_profile">
+              <MappingFragment StoreEntitySet="user_profile">
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="F_name" ColumnName="F_name" />
+                <ScalarProperty Name="L_name" ColumnName="L_name" />
+                <ScalarProperty Name="occupation" ColumnName="occupation" />
+                <ScalarProperty Name="caste" ColumnName="caste" />
+                <ScalarProperty Name="religion" ColumnName="religion" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Matrimonial_WebsiteEntities">
+    <EntitySetMapping Name="chats">
+      <EntityTypeMapping TypeName="Model.chat">
+        <MappingFragment StoreEntitySet="chat">
+          <ScalarProperty Name="c_id" ColumnName="c_id" />
+          <ScalarProperty Name="c_user_1" ColumnName="c_user_1" />
+          <ScalarProperty Name="c_user_2" ColumnName="c_user_2" />
+          <ScalarProperty Name="chat_status" ColumnName="chat_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="image_gallery">
+      <EntityTypeMapping TypeName="Model.image_gallery">
+        <MappingFragment StoreEntitySet="image_gallery">
+          <ScalarProperty Name="img_id" ColumnName="img_id" />
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+          <ScalarProperty Name="user_image" ColumnName="user_image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="successful_stories">
+      <EntityTypeMapping TypeName="Model.successful_stories">
+        <MappingFragment StoreEntitySet="successful_stories">
+          <ScalarProperty Name="s_id" ColumnName="s_id" />
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="story_status" ColumnName="story_status" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="description_" ColumnName="description_" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user_profile">
+      <EntityTypeMapping TypeName="Model.user_profile">
+        <MappingFragment StoreEntitySet="user_profile">
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+          <ScalarProperty Name="pass" ColumnName="pass" />
+          <ScalarProperty Name="F_name" ColumnName="F_name" />
+          <ScalarProperty Name="L_name" ColumnName="L_name" />
+          <ScalarProperty Name="occupation" ColumnName="occupation" />
+          <ScalarProperty Name="caste" ColumnName="caste" />
+          <ScalarProperty Name="religion" ColumnName="religion" />
+          <ScalarProperty Name="salary" ColumnName="salary" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

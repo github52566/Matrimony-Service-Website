@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="chat">
+    <Key>
+      <PropertyRef Name="c_id" />
+    </Key>
+    <Property Name="c_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="c_user_1" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="c_user_2" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="chat_status" Type="int" />
+  </EntityType>
+  <EntityType Name="image_gallery">
+    <Key>
+      <PropertyRef Name="img_id" />
+    </Key>
+    <Property Name="img_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="u_id" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="user_image" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="successful_stories">
+    <Key>
+      <PropertyRef Name="s_id" />
+    </Key>
+    <Property Name="s_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="u_id" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="rating" Type="varchar" MaxLength="255" />
+    <Property Name="story_status" Type="int" />
+    <Property Name="title" Type="varchar" MaxLength="255" />
+    <Property Name="description_" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="user_profile">
+    <Key>
+      <PropertyRef Name="u_id" />
+    </Key>
+    <Property Name="u_id" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="pass" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="F_name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="L_name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="occupation" Type="varchar" MaxLength="255" />
+    <Property Name="caste" Type="varchar" MaxLength="255" />
+    <Property Name="religion" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="salary" Type="int" />
+    <Property Name="gender" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <Association Name="FK__chat__c_user_1__20C1E124">
+    <End Role="user_profile" Type="Self.user_profile" Multiplicity="1" />
+    <End Role="chat" Type="Self.chat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_profile">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="chat">
+        <PropertyRef Name="c_user_1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__chat__c_user_2__21B6055D">
+    <End Role="user_profile" Type="Self.user_profile" Multiplicity="1" />
+    <End Role="chat" Type="Self.chat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_profile">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="chat">
+        <PropertyRef Name="c_user_2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__image_gall__u_id__24927208">
+    <End Role="user_profile" Type="Self.user_profile" Multiplicity="1" />
+    <End Role="image_gallery" Type="Self.image_gallery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_profile">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="image_gallery">
+        <PropertyRef Name="u_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__successful__u_id__1DE57479">
+    <End Role="user_profile" Type="Self.user_profile" Multiplicity="1" />
+    <End Role="successful_stories" Type="Self.successful_stories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_profile">
+        <PropertyRef Name="u_id" />
+      </Principal>
+      <Dependent Role="successful_stories">
+        <PropertyRef Name="u_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="chat" EntityType="Self.chat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="image_gallery" EntityType="Self.image_gallery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="successful_stories" EntityType="Self.successful_stories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user_profile" EntityType="Self.user_profile" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__chat__c_user_1__20C1E124" Association="Self.FK__chat__c_user_1__20C1E124">
+      <End Role="user_profile" EntitySet="user_profile" />
+      <End Role="chat" EntitySet="chat" />
+    </AssociationSet>
+    <AssociationSet Name="FK__chat__c_user_2__21B6055D" Association="Self.FK__chat__c_user_2__21B6055D">
+      <End Role="user_profile" EntitySet="user_profile" />
+      <End Role="chat" EntitySet="chat" />
+    </AssociationSet>
+    <AssociationSet Name="FK__image_gall__u_id__24927208" Association="Self.FK__image_gall__u_id__24927208">
+      <End Role="user_profile" EntitySet="user_profile" />
+      <End Role="image_gallery" EntitySet="image_gallery" />
+    </AssociationSet>
+    <AssociationSet Name="FK__successful__u_id__1DE57479" Association="Self.FK__successful__u_id__1DE57479">
+      <End Role="user_profile" EntitySet="user_profile" />
+      <End Role="successful_stories" EntitySet="successful_stories" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
